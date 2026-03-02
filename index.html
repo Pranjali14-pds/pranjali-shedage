@@ -1,73 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AJAX Search Suggestion</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>CSS3 Styles Demo</title>
+
     <style>
+        /* Page Background */
         body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 30px;
         }
 
-        #search-box {
+        /* Colors & Fonts */
+        .color-text {
+            color: #2c3e50;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Borders */
+        .border-box {
+            border: 3px solid #e74c3c;
+            border-radius: 15px;
+            padding: 20px;
             width: 300px;
-            padding: 8px;
+            background-color: white;
+            margin-bottom: 20px;
         }
 
-        #suggestions {
-            width: 300px;
-            border: 1px solid #ccc;
-            display: none;
-            position: absolute;
-            background: #fff;
+        /* Background styles */
+        .background-box {
+            background: url('https://via.placeholder.com/300') no-repeat center;
+            background-size: cover;
+            height: 150px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
-        .suggestion-item {
-            padding: 8px;
+        /* Text Effects */
+        .text-effects {
+            font-size: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 5px black;
+            background-color: #8e44ad;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Hover effect */
+        .hover-button {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        .suggestion-item:hover {
-            background: #f0f0f0;
+        .hover-button:hover {
+            background-color: #2ecc71;
+            transform: scale(1.1);
         }
     </style>
+
 </head>
 <body>
 
-<h2>AJAX Search Suggestion</h2>
+    <h1 class="color-text">CSS3 Styling Example</h1>
 
-<input type="text" id="search-box" placeholder="Start typing..." autocomplete="off">
-<div id="suggestions"></div>
+    <div class="border-box">
+        This box demonstrates borders, border-radius and background color.
+    </div>
 
-<script>
-$(document).ready(function(){
+    <div class="background-box"></div>
 
-    $("#search-box").keyup(function(){
-        let query = $(this).val();
+    <div class="text-effects">
+        Beautiful Text Effects
+    </div>
 
-        if(query.length > 0){
-            $.ajax({
-                url: "search.php",
-                method: "POST",
-                data: {search: query},
-                success: function(response){
-                    $("#suggestions").html(response);
-                    $("#suggestions").show();
-                }
-            });
-        } else {
-            $("#suggestions").hide();
-        }
-    });
+    <br><br>
 
-    // Click on suggestion
-    $(document).on("click", ".suggestion-item", function(){
-        $("#search-box").val($(this).text());
-        $("#suggestions").hide();
-    });
-
-});
-</script>
+    <button class="hover-button">Hover Me</button>
 
 </body>
 </html>
