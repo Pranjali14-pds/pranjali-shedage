@@ -1,25 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JavaScript Demo</title>
+    <title>Interactive Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input.error {
+            border-color: red;
+        }
+
+        input.success {
+            border-color: green;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Open Console to See Output</h2>
+<div class="form-container">
+    <h2>Registration Form</h2>
+
+    <form id="myForm">
+        <div class="input-group">
+            <label>Name</label>
+            <input type="text" id="name">
+            <div class="error-message" id="nameError"></div>
+        </div>
+
+        <div class="input-group">
+            <label>Email</label>
+            <input type="text" id="email">
+            <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password">
+            <div class="error-message" id="passwordError"></div>
+        </div>
+
+        <div class="input-group">
+            <label>Confirm Password</label>
+            <input type="password" id="confirmPassword">
+            <div class="error-message" id="confirmPasswordError"></div>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
 
 <script>
-    let num1 = 10;
-    let num2 = 5;
+const form = document.getElementById("myForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword");
 
-    console.log("Addition:", num1 + num2);
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    validateForm();
+});
 
-    if (num1 > num2) {
-        console.log("num1 is greater");
+function validateForm() {
+    let isValid = true;
+
+    // Name validation
+    if (nameInput.value.trim().length < 3) {
+        setError(nameInput, "Name must be at least 3 characters");
+        isValid = false;
+    } else {
+        setSuccess(nameInput);
     }
 
-    for (let i = 1; i <= 5; i++) {
-        console.log("Count:", i);
+    // Email validation
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(emailInput.value.trim())) {
+        setError(emailInput, "Enter a valid email");
+        isValid = false;
+    } else {
+        setSuccess(emailInput);
     }
+
+    // Password validation
+    if (passwordInput.value.length < 6) {
+        setError(passwordInput, "Password must be at least 6 characters");
+        isValid = false;
+    } else {
+        setSuccess(passwordInput);
+    }
+
+    // Confirm password validation
+    if (confirmPasswordInput.value !== passwordInput.value || confirmPasswordInput.value === "") {
+        setError(confirmPasswordInput, "Passwords do not match");
+        isValid = false;
+    } else {
+        setSuccess(confirmPasswordInput);
+    }
+
+    if (isValid) {
+        alert("Form submitted successfully!");
+        form.reset();
+    }
+}
+
+function setError(input, message) {
+    input.classList.add("error");
+    input.classList.remove("success");
+    input.nextElementSibling.textContent = message;
+}
+
+function setSuccess(input) {
+    input.classList.add("success");
+    input.classList.remove("error");
+    input.nextElementSibling.textContent = "";
+}
 </script>
 
 </body>
