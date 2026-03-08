@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic DOM Example</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #content {
-            font-size: 20px;
-            margin: 20px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            display: inline-block;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
+<title>AJAX Search Suggestion</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+$("#search").keyup(function(){
+
+var txt = $(this).val();
+
+if(txt != "")
+{
+$.ajax({
+url:"search.php",
+method:"POST",
+data:{query:txt},
+success:function(data){
+$("#result").html(data);
+$("#result").show();
+}
+});
+}
+else
+{
+$("#result").hide();
+}
+
+});
+
+});
+</script>
+
 </head>
+
 <body>
 
-    <h2>Dynamic Page Using JavaScript DOM</h2>
+<h2>Search Suggestion</h2>
 
-    <div id="content">
-        Click the button to change this content.
-    </div>
+<input type="text" id="search" placeholder="Search here">
 
-    <br>
-    <button onclick="updateContent()">Click Me</button>
-
-    <script>
-        let count = 0;
-
-        function updateContent() {
-            count++;
-
-            const contentDiv = document.getElementById("content");
-
-            // Change text
-            contentDiv.innerHTML = "Button clicked " + count + " times!";
-
-            // Change background color randomly
-            const colors = ["#ffcccc", "#ccffcc", "#ccccff", "#ffffcc"];
-            contentDiv.style.backgroundColor =
-                colors[Math.floor(Math.random() * colors.length)];
-
-            // Add new paragraph dynamically
-            const newPara = document.createElement("p");
-            newPara.textContent = "New element added at click " + count;
-            document.body.appendChild(newPara);
-        }
-    </script>
+<div id="result"></div>
 
 </body>
 </html>
