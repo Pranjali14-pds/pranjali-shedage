@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Arithmetic Operations using Switch Case</title>
-</head>
-<body>
-
-<h2>Arithmetic Operations using Switch Case</h2>
+    <title>Form Validation</title>
 
 <script>
-
-let num1 = parseFloat(prompt("Enter first number:"));
-let num2 = parseFloat(prompt("Enter second number:"));
-let operator = prompt("Enter operator (+, -, *, /):");
-
-let result;
-
-switch(operator)
+function validateForm()
 {
-    case "+":
-        result = num1 + num2;
-        document.write("Addition = " + result);
-        break;
+    let name = document.forms["myForm"]["name"].value;
+    let email = document.forms["myForm"]["email"].value;
+    let password = document.forms["myForm"]["password"].value;
 
-    case "-":
-        result = num1 - num2;
-        document.write("Subtraction = " + result);
-        break;
+    if(name == "")
+    {
+        alert("Name must be filled out");
+        return false;
+    }
 
-    case "*":
-        result = num1 * num2;
-        document.write("Multiplication = " + result);
-        break;
+    if(email == "")
+    {
+        alert("Email must be filled out");
+        return false;
+    }
 
-    case "/":
-        result = num1 / num2;
-        document.write("Division = " + result);
-        break;
+    if(password.length < 6)
+    {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
 
-    default:
-        document.write("Invalid Operator");
+    alert("Form submitted successfully!");
+    return true;
 }
-
 </script>
+
+</head>
+
+<body>
+
+<h2>Registration Form</h2>
+
+<form name="myForm" onsubmit="return validateForm()">
+
+Name: <input type="text" name="name"><br><br>
+
+Email: <input type="text" name="email"><br><br>
+
+Password: <input type="password" name="password"><br><br>
+
+<input type="submit" value="Submit">
+
+</form>
 
 </body>
 </html>
