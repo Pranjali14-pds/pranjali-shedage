@@ -1,48 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AJAX Search Suggestion</title>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-$(document).ready(function(){
-
-$("#search").keyup(function(){
-
-var txt = $(this).val();
-
-if(txt != "")
-{
-$.ajax({
-url:"search.php",
-method:"POST",
-data:{query:txt},
-success:function(data){
-$("#result").html(data);
-$("#result").show();
-}
-});
-}
-else
-{
-$("#result").hide();
-}
-
-});
-
-});
-</script>
-
+    <title>User Registration Form</title>
 </head>
-
 <body>
 
-<h2>Search Suggestion</h2>
+<h2>User Registration Form</h2>
 
-<input type="text" id="search" placeholder="Search here">
+<form action="process.php" method="post">
+    
+    <label>Full Name:</label><br>
+    <input type="text" name="fullname" required><br><br>
 
-<div id="result"></div>
+    <label>Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <br><br>
+
+    <label>Hobbies:</label><br>
+    <input type="checkbox" name="hobbies[]" value="Reading"> Reading
+    <input type="checkbox" name="hobbies[]" value="Sports"> Sports
+    <input type="checkbox" name="hobbies[]" value="Music"> Music
+    <br><br>
+
+    <label>Country:</label><br>
+    <select name="country">
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+    </select>
+    <br><br>
+
+    <input type="submit" value="Register">
+
+</form>
 
 </body>
 </html>
