@@ -1,71 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Resume</title>
-<style>
-body{font-family:Arial;background:#f4f6f8;margin:0;padding:0;}
-.resume{width:800px;margin:30px auto;background:white;padding:25px;box-shadow:0 0 10px rgba(0,0,0,0.1);}
-h1{text-align:center;}
-h3{border-bottom:2px solid black;padding-bottom:5px;}
-table{width:100%;border-collapse:collapse;margin-top:10px;}
-table,th,td{border:1px solid gray;padding:8px;}
-</style>
+<title>User Form</title>
 </head>
-
 <body>
 
-<div class="resume">
+<h2>User Registration</h2>
 
-<h1>Pranjali Shedage</h1>
+<form action="insert.php" method="POST">
+    Name: <input type="text" name="name" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    Phone: <input type="text" name="phone" required><br><br>
 
-<p style="text-align:center">
-Email: pranjalishedage41@gmail.com | Mobile: 9XXXXXXXXX
-</p>
-
-<h3>Career Objective</h3>
-<p>
-To build a successful career in a reputed organization where I can apply my technical knowledge, 
-  develop new skills, and contribute positively to the growth of the organization.
-</p>
-
-<h3>Personal Details</h3>
-<p><b>Full Name:</b> Pranjali Deepak Shedage</p>
-<p><b>Date of Birth:</b> 14/06/2006</p>
-<p><b>Gender:</b> Female</p>
-<p><b>Nationality:</b> Indian</p>
-<p><b>Languages Known:</b> English, Hindi, Marathi</p>
-<p><b>Address:</b> 119, Yadogopal Peth, Satara</p>
-
-<h3>Educational Qualification</h3>
-
-<table>
-<tr>
-<td>Diploma Qualified</td>
-<td>Vgovernment Polytechnic Karad</td>
-<td>MSBTE</td>
-<td>2025</td>
-<td>84%</td>
-</tr>
-
-<tr>
-<td>SSC</td>
-<td>New English School, Satara</td>
-<td>State Board</td>
-<td>2022</td>
-<td>90%</td>
-</tr>
-</table>
-
-<h3>Technical Skills</h3>
-
-<ul>
-<li>HTML, CSS, JavaScript</li>
-<li>C, C++, Java</li>
-<li>PLC Wiring & Machine Assembly</li>
-<li>Basic Electronics & Sensors</li>
-</ul>
-
-</div>
+    <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>
