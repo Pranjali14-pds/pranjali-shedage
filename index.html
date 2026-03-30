@@ -1,18 +1,33 @@
-<!DOCTYPE html>
-<html>
-<body>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test_db";
 
-<h2>Login</h2>
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-<form method="POST">
-Username:
-<input type="text" name="username" required><br><br>
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-Password:
-<input type="password" name="password" required><br><br>
+// Data to insert
+$name = "John Doe";
+$email = "john@example.com";
 
-<button type="submit" name="login">Login</button>
-</form>
+// Prepare and bind
+$stmt = $conn->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+$stmt->bind_param("ss", $name, $email);
 
-</body>
-</html>
+// Execute
+if ($stmt->execute()) {
+    echo "Data inserted successfully";
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+// Close connection
+$stmt->close();
+$conn->close();
+?>
